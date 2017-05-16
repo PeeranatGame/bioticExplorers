@@ -1,6 +1,9 @@
 #include "Flasher.h"
 
-Flasher::Flasher(int pin, long on, long off) {
+Flasher::Flasher() {
+}
+
+void Flasher::init(int pin, long on, long off) {
   ledPin = pin;
   pinMode(ledPin, OUTPUT);     
     
@@ -11,7 +14,7 @@ Flasher::Flasher(int pin, long on, long off) {
   previousMillis = 0;
 }
 
-void Flasher::Update() {
+void Flasher::update() {
   // check to see if it's time to change the state of the LED
   unsigned long currentMillis = millis();
    

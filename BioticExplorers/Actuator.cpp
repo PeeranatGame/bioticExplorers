@@ -1,22 +1,26 @@
 #include "Actuator.h"
 
-Actuator::Actuator(int interval, int _pin, bool _dir) {
+Actuator::Actuator() {
+	
+}
+
+void Actuator::init(int interval, int _pin, bool _dir) {
 	updateInterval = interval;
 	increment = 1;
 	pin = _pin;
 	direction = _dir;
 }
 
-void Actuator::Attach(int pin) {
+void Actuator::attach(int pin) {
 	servo.attach(pin);
 }
 
-void Actuator::Detach() {
+void Actuator::detach() {
 	servo.detach();
 }
 
-void Actuator::Move(int _pos) {
-	Attach(pin);
+void Actuator::move(int _pos) {
+	attach(pin);
 	digitalWrite(pin, HIGH);
 	if (direction) servo.write(_pos);
 	else servo.write(map(_pos, 0, maxPos, otherMax, otherMax-maxPos));
@@ -24,16 +28,16 @@ void Actuator::Move(int _pos) {
 	direction = !direction;
 	delay(250);
 	digitalWrite(pin, LOW);
-	Detach();
+	detach();
 }
 
-void Actuator::Update() {
+void Actuator::update() {
 	if((millis() - lastUpdate) > updateInterval) { // time to update
 		lastUpdate = millis();
 		if(platform == flipper) {
 			Serial.println("servo'd");
-			Move(minPos);
-			Move(maxPos);
+			move(minPos);
+			move(maxPos);
 		}
 		flipper = !flipper;
 		Serial.print("flipp'd: ");

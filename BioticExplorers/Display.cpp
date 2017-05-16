@@ -1,7 +1,26 @@
 #include "Display.h"
 
+Display::Display() {
+}
+void Display::begin() {
+  Serial.print("Display started: ");
+  Serial.println(number);
+  tcaselect(number);
+  oled.begin(&Adafruit128x64, I2C_ADDRESS);
+  oled.set400kHz();
+  oled.setFont(X11fixed7x14B);
+  clear();
+  displayState = LOW;
 
-Display::Display(int _i2c, int _tca, int _number, int _update, int _charLength, int _charMargin, long on, long off) {
+  clear();
+  oled.set2X();
+  oled.setCursor((64 / 2) + 10, 3);
+  oled.write(number);
+  oled.set1X();
+
+}
+
+void Display::init(int _i2c, int _tca, int _number, int _update, int _charLength, int _charMargin, long on, long off) {
   I2C_ADDRESS = _i2c;
   TCAADDR = _tca;
   Serial.print("Display initialized: ");
@@ -14,18 +33,7 @@ Display::Display(int _i2c, int _tca, int _number, int _update, int _charLength, 
   charLength = _charLength;
   charMargin = _charMargin;
   OnTime = on;
-  OffTime = off;
-}
-
-void Display::begin() {
-  Serial.print("Display started: ");
-  Serial.println(number);
-  tcaselect(number);
-  oled.begin(&Adafruit128x64, I2C_ADDRESS);
-  oled.set400kHz();
-  oled.setFont(X11fixed7x14B);
-  clear();
-  displayState = LOW;
+  OffTime = off; 
 }
 
 void Display::update() {
@@ -61,6 +69,7 @@ void Display::show(unsigned long currentMillis) {
 
 void Display::normalText() {
   int sizeOfArray = sizeof(string_table) / sizeof(int);
+  randomSeed(analogRead(0));
   int mRandom = random(sizeOfArray);
   if (previousRandom != mRandom) {
     clear();
@@ -94,7 +103,7 @@ void Display::phValue() {
   oled.write("pH");
   oled.set2X();
   oled.setCursor((64 / 2) + 10, 3);
-  oled.write("2.2");
+  oled.write("1.1");
   oled.set1X();
 }
 

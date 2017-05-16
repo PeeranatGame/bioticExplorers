@@ -13,11 +13,12 @@ extern bool flipper;
 class Actuator
 {
 	public:
-		Actuator(int interval, int _pin, bool _dir);
-		void Attach(int pin);
-		void Detach();
-		void Move(int _pos);
-		void Update();
+		Actuator();
+		void init(int interval, int _pin, bool _dir);
+		void attach(int pin);
+		void detach();
+		void move(int _pos);
+		void update();
 	private:
 		Servo servo;              	// the servo
 		int pos;              		// current servo position 

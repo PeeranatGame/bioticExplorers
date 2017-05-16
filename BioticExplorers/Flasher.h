@@ -7,8 +7,9 @@ class Flasher   {
 	public:
 		// Constructor - creates a Flasher 
 		// and initializes the member variables and state
-		Flasher(int pin, long on, long off);
-		void Update();
+		Flasher();
+		void init(int pin, long on, long off);
+		void update();
 	private:
 		// Class Member Variables
 		// These are initialized at startup
