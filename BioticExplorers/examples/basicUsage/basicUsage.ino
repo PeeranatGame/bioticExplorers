@@ -1,10 +1,8 @@
-#include "bioticExplorers.h"
+#include "BioticExplorers.h"
 
 
 
-void setup() {
-	
-	
+void setup() {	
 	while (!Serial) { }; // for Leos
 	Serial.begin(9600);
 }

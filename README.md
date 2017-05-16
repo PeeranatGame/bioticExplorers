@@ -1,11 +1,12 @@
-Button
+bioticExplorers
 ======
 
-* Author: Michael Adams (<http://www.michael.net.nz>)
-* Copyright (C) 2016 Michael D K Adams.
+* Author: Julian Hespenheide (<http://www.julian-h.de>)
+* Copyright (C) 2017 Julian Hespenheide.
 * Released under the MIT license.
 
-Button is a tiny library to make reading buttons very simple. It handles debouncing automatically, and monitoring of state.
+bioticExplorers is the code that is accompanying the likewise named installation of Julian Hespenheide.
+It is a collection of code snippets and objects to make code more readable and especially maintanable.
 
 Motivation
 ----------
