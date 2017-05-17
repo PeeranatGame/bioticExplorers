@@ -1,5 +1,7 @@
-bioticExplorers
+Biotic Explorers
 ======
+
+### Narrative Explorations with Eukaryotic Systems
 
 ![header](docs/img/header.jpg)
 
@@ -12,7 +14,7 @@ It is a collection of code snippets and objects to make code more readable and e
 
 Motivation
 ----------
-
+yes. later.
 
 Features
 --------
