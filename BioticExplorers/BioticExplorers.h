@@ -7,7 +7,7 @@
 
 class Explorer {
 	public:
-		Explorer();
+		Explorer(bool _platform);
 		void begin();
 		void update();
 	private:
@@ -20,6 +20,8 @@ class Explorer {
 		int charLength;
 		int charMargin;
 		int disp;
+
+		bool platform;
 
 		Display display0;
 		Display display1;

@@ -12,8 +12,8 @@ Explorer       KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-read         KEYWORD2
-toggled      KEYWORD2
+begin         KEYWORD2
+init	      KEYWORD2
 pressed      KEYWORD2
 released     KEYWORD2
 has_changed  KEYWORD2

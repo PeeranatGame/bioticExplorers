@@ -1,6 +1,6 @@
 #include "BioticExplorers.h"
 
-Explorer::Explorer() {
+Explorer::Explorer(bool _platform) {
 	previousMillis = 0;
 	waitMillis = 1000;
 	phValue = 3.21;
@@ -9,6 +9,8 @@ Explorer::Explorer() {
 	charMargin = 1;
 
 	disp = 0;
+
+	platform = _platform;
 
 	display0.init(I2C_ADDRESS, TCAADDR, 0, 1000, charLength, charMargin, 3000, 9000);
 	display1.init(I2C_ADDRESS, TCAADDR, 1, 2000, charLength, charMargin, 12000, 4000);
