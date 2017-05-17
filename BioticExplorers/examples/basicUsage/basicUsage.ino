@@ -1,14 +1,24 @@
 #include "BioticExplorers.h"
 
 bool platform = true;
-Explorer machine(platform);
 int previousRandom = 0;
 
+// needed for Actuator.h
+int servo1pin = 2;
+int servo2pin = 3;
+
+int minPos = 0;
+int maxPos = 90;
+int otherMax = 180;
+bool flipper = false;
+
+Explorer machine(platform, servo1pin, servo2pin);
 
 
 void setup() {	
-	while (!Serial) { }; // for Leos
-	Serial.begin(9600);
+	//while (!Serial) { }; // for Leos
+	//Serial.begin(9600);
+	Serial.println("Biotic Explorers – M Y C E L I U M");
 
 	machine.begin(); // start the machine
 }

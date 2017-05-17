@@ -19,11 +19,16 @@ void Actuator::detach() {
 	servo.detach();
 }
 
+void Actuator::write(int degree) {
+	int pulse = map(degree, 0, 180, 800, 2200);
+	servo.write(pulse);
+}
+
 void Actuator::move(int _pos) {
 	attach(pin);
 	digitalWrite(pin, HIGH);
-	if (direction) servo.write(_pos);
-	else servo.write(map(_pos, 0, maxPos, otherMax, otherMax-maxPos));
+	if (direction) write(_pos);
+	else write(map(_pos, 0, maxPos, otherMax, otherMax-maxPos));
 
 	direction = !direction;
 	delay(250);

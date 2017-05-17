@@ -2,7 +2,7 @@
 #define Actuator_h
 
 #include <Arduino.h>
-#include <Servo.h>
+#include "ServoTimer2.h"
 
 extern int minPos;
 extern int maxPos;
@@ -19,8 +19,9 @@ class Actuator
 		void detach();
 		void move(int _pos);
 		void update();
+		void write(int degree);
 	private:
-		Servo servo;              	// the servo
+		ServoTimer2 servo;         	// the servo
 		int pos;              		// current servo position 
 		int increment;        		// increment to move for each interval
 		int  updateInterval;      	// interval between updates

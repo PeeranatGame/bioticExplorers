@@ -1,6 +1,8 @@
 #include "BioticExplorers.h"
 
-Explorer::Explorer(bool _platform) {
+Explorer::Explorer(bool _platform, int servo1, int servo2) {
+	machineState = _platform;
+
 	previousMillis = 0;
 	waitMillis = 1000;
 	phValue = 3.21;
@@ -17,10 +19,15 @@ Explorer::Explorer(bool _platform) {
 	display2.init(I2C_ADDRESS, TCAADDR, 2, 3000, charLength, charMargin, 12000, 4000);
 
 	led1.init(13, 123, 400);
+
+	actuator1.init(10000, servo1, true);
+	actuator2.init(5000, servo2, true);
 	
 }
 
 void Explorer::begin() {
+	Serial.println("Machine start");
+
 	Wire.begin();
 	display0.begin();
 	display1.begin();
@@ -33,4 +40,12 @@ void Explorer::update() {
   	display2.update();
 
   	led1.update();
+
+  	actuator1.update();
+  	actuator2.update();
 }
+
+/*
+	create methods that read from receiver and change the status:
+	then decide if to send or not and also move the motors
+*/

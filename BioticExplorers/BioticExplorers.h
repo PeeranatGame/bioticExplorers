@@ -3,11 +3,11 @@
 
 #include "Display.h"
 #include "Flasher.h"
-//#include "Display.h"
+#include "Actuator.h"
 
 class Explorer {
 	public:
-		Explorer(bool _platform);
+		Explorer(bool _platform, int servo1, int servo2);
 		void begin();
 		void update();
 	private:
@@ -21,6 +21,8 @@ class Explorer {
 		int charMargin;
 		int disp;
 
+		bool machineState;
+
 		bool platform;
 
 		Display display0;
@@ -28,6 +30,9 @@ class Explorer {
 		Display display2;
 
 		Flasher led1;
+
+		Actuator actuator1;
+		Actuator actuator2;
 };
 
 #endif
