@@ -6,13 +6,17 @@
 class Receiver {
 	public:
 		Receiver();
-		void init(int led_pin, int receive_pin);
+		void init(int led_pin, int receive_pin, bool platform);
 		void begin();
 		void update();
 		void readMessage();
 		void tryGetMessage(int times);
 		void decode(byte * encoded, int & decoded);
+		void setState(bool state);
+		bool getState();
 	private:
+		int platform;
+
 		int led_pin;
 		int receive_pin;
 		// a buffer to store the incoming messages 
@@ -23,8 +27,10 @@ class Receiver {
 		int decodedVal;
 		int mappedVal;
 
-		int MIN_PULSE_WIDTH = 800;
-		int MAX_PULSE_WIDTH = 2200;
+		bool receiveState; // was the message ok | ok = not this platform
+
+		int minServo = 800;
+		int maxServo = 2200;
 
 		unsigned long previousMillis;
 		unsigned long receiveInterval;

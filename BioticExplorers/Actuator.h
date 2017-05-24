@@ -14,7 +14,7 @@ class Actuator
 {
 	public:
 		Actuator();
-		void init(int interval, int _pin, bool _dir);
+		void init(int interval, int _pin, bool _dir, int order);
 		void attach(int pin);
 		void detach();
 		void move(int _pos);
@@ -28,6 +28,7 @@ class Actuator
 		unsigned long lastUpdate; 	// last update of position
 		int pin;              		// the pin
 		bool direction;
+		int order;
 
 
 };

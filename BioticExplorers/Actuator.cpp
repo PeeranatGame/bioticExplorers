@@ -1,14 +1,13 @@
 #include "Actuator.h"
 
-Actuator::Actuator() {
-	
-}
+Actuator::Actuator() {}
 
-void Actuator::init(int interval, int _pin, bool _dir) {
+void Actuator::init(int interval, int _pin, bool _dir, int _order) {
 	updateInterval = interval;
 	increment = 1;
 	pin = _pin;
 	direction = _dir;
+	order = _order;
 }
 
 void Actuator::attach(int pin) {
@@ -40,12 +39,13 @@ void Actuator::update() {
 	if((millis() - lastUpdate) > updateInterval) { // time to update
 		lastUpdate = millis();
 		if(platform == flipper) {
-			Serial.println("servo'd");
+			Serial.println("[ /m ] servo movement");
 			move(minPos);
 			move(maxPos);
 		}
-		flipper = !flipper;
-		Serial.print("flipp'd: ");
-		Serial.println(flipper);
+		if(order == 1) flipper = !flipper;
+		Serial.print("[ /m ] flip status [");
+		Serial.print(flipper);
+		Serial.println("]");
 	}
 }

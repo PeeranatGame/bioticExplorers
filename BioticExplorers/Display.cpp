@@ -1,9 +1,9 @@
 #include "Display.h"
 
-Display::Display() {
-}
+Display::Display() {}
+
 void Display::begin() {
-  Serial.print("Display started: ");
+  Serial.print("[ /d ] display started: #");
   Serial.println(number);
   tcaselect(number);
   oled.begin(&Adafruit128x64, I2C_ADDRESS);
@@ -23,8 +23,6 @@ void Display::begin() {
 void Display::init(int _i2c, int _tca, int _number, int _update, int _charLength, int _charMargin, long on, long off) {
   I2C_ADDRESS = _i2c;
   TCAADDR = _tca;
-  Serial.print("Display initialized: ");
-  Serial.println(number);
   number = _number;
   previousMillis = 0;
   updateInterval = _update;
@@ -59,12 +57,12 @@ void Display::show(unsigned long currentMillis) {
   } else {
     normalText();
   }
-  Serial.print("state: ");
+  /*
+  Serial.print("[ /d ] state[");
   Serial.print(displayState);
-  Serial.print("\t");
-
-  Serial.print("show on number: ");
+  Serial.print("] on #");
   Serial.println(number);
+  */
 }
 
 void Display::normalText() {
@@ -103,7 +101,24 @@ void Display::phValue() {
   oled.write("pH");
   oled.set2X();
   oled.setCursor((64 / 2) + 10, 3);
-  oled.write("1.1");
+  randomSeed(analogRead(0));
+  int first = (int)random(5, 9);
+  if(first == 5)
+    oled.write("5.8");
+  else if(first > 5 && first <= 6)
+    oled.write("6.4");
+  else if(first > 6 && first <= 7)
+    oled.write("7.7");
+  else if(first > 7 && first <= 8)
+    oled.write("8.2");
+  else if(first > 8)
+    oled.write("9.4");
+  
+  
+  //oled.write("1.1");
+  // oled.write(c1);
+  // oled.write(".");
+  // oled.write(c2);
   oled.set1X();
 }
 

@@ -14,35 +14,59 @@ Explorer::Explorer(bool _platform, int servo1, int servo2) {
 
 	platform = _platform;
 
-	display0.init(I2C_ADDRESS, TCAADDR, 0, 1000, charLength, charMargin, 3000, 9000);
-	display1.init(I2C_ADDRESS, TCAADDR, 1, 2000, charLength, charMargin, 12000, 4000);
-	display2.init(I2C_ADDRESS, TCAADDR, 2, 3000, charLength, charMargin, 12000, 4000);
+	if(debug) {
+		display0.init(I2C_ADDRESS, TCAADDR, 0, 1000, charLength, charMargin, 3000, 9000);
+		display1.init(I2C_ADDRESS, TCAADDR, 1, 2000, charLength, charMargin, 12000, 4000);
+		display2.init(I2C_ADDRESS, TCAADDR, 2, 3000, charLength, charMargin, 12000, 4000);
+	}
 
 	led1.init(13, 123, 400);
 
-	actuator1.init(10000, servo1, true);
-	actuator2.init(5000, servo2, true);
+	//actuator1.init(180000, servo1, servo2, true, true);
+	actuator1.init(180000, servo1, servo2, true, true);
+	//actuator2.init(10500, servo2, true, 1);
+
+	sender.init(13, 12, platform);
+	receiver.init(13, 11, platform);
 	
 }
 
 void Explorer::begin() {
-	Serial.println("Machine start");
+	Serial.println("[ /m ] machine start");
+	Serial.print("[ /m ] state: ");
+	Serial.println(platform);
 
 	Wire.begin();
-	display0.begin();
-	display1.begin();
-	display2.begin();
+	if(debug) {
+		display0.begin();
+		display1.begin();
+		display2.begin();
+	}
+
+	sender.begin();
+	receiver.begin();
 }
 
 void Explorer::update() {
-	display0.update();
-  	display1.update();
-  	display2.update();
+	if(debug) {
+		display0.update();
+	  	display1.update();
+	  	display2.update();
+	  	actuator1.update();
+  		//actuator2.update();
+  	}
 
   	led1.update();
 
-  	actuator1.update();
-  	actuator2.update();
+  	
+
+  	// Serial.print("[ /r ] state:");
+  	// Serial.println(receiver.getState());
+  	/*
+  	sender.update();
+  	receiver.update();
+  	sender.setState(receiver.getState());
+  	*/
 }
 
 /*

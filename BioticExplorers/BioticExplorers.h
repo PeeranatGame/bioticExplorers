@@ -3,7 +3,17 @@
 
 #include "Display.h"
 #include "Flasher.h"
-#include "Actuator.h"
+#include "DoubleActuator.h"
+#include "Sender.h"
+#include "Receiver.h"
+
+/*
+todo:
+counter til next transmission
+ph values random with perlin noise
+more comments
+adafruit gfx library?
+*/
 
 class Explorer {
 	public:
@@ -31,8 +41,13 @@ class Explorer {
 
 		Flasher led1;
 
-		Actuator actuator1;
-		Actuator actuator2;
+		DoubleActuator actuator1;
+		//Actuator actuator2;
+
+		Sender sender;
+		Receiver receiver;
+
+		bool debug = true;
 };
 
 #endif
