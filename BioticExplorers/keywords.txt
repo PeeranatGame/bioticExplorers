@@ -6,20 +6,20 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-Explorer       KEYWORD1
+Explorer	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
-begin         KEYWORD2
-init	      KEYWORD2
-pressed      KEYWORD2
-released     KEYWORD2
-has_changed  KEYWORD2
+begin	KEYWORD2
+init	KEYWORD2
+pressed	KEYWORD2
+released	KEYWORD2
+has_changed	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
 #######################################
-PRESSED      LITERAL1
-RELEASED     LITERAL1
+PRESSED	LITERAL1
+RELEASED	LITERAL1
